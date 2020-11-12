@@ -1,0 +1,33 @@
+{
+  "name": "blog4",
+  "version": "1.0.0",
+  "description": "latihan membuat blog ke 4",
+  "main": "server.js",
+  "scripts": {
+    "start":"pm2-runtime start ecosystem.config.js --env production --watch",
+    "dev": "nodemon server.js",
+    "stop":"pm2 stop all"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "connect-flash": "^0.1.1",
+    "cookie-session": "^1.4.0",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.3",
+    "express": "^4.17.1",
+    "express-validator": "^6.6.1",
+    "helmet": "^4.2.0",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.9.27",
+    "mongoose-paginate-v2": "^1.3.9",
+    "morgan": "^1.10.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "pm2": "^4.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}

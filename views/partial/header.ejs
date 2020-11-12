@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <title><%= page; %></title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/">Mynote</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ml-auto align-items-lg-center mt-3 mt-lg-0">
+                    <% if(typeof(loginPage)!== 'boolean' && admin !== true){ %>
+                    <a class="btn btn-sm bg-my-melon mr-1" href="/login" role="button">login</a>
+                    <% } %>
+                    <% if(admin){ %>
+                    <a class="btn btn-sm bg-my-melon mr-lg-1 mt-3 mb-2 mt-lg-0 mb-lg-0 d-none d-lg-flex justify-content-center align-items-center"
+                        href="/create" role="button">
+                        <span class="material-icons mr-1"> post_add</span>
+                        <span>create</span>
+                    </a>
+                    <a class="btn btn-sm bg-my-primary" href="/logout" role="button">logout</a>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </nav>

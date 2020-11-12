@@ -1,0 +1,97 @@
+<%- include("./partial/header"); %>
+<div class="container home-view pt-4">
+    <div class="row">
+        <div class="col-lg-8">
+            <%- include('./partial/flash'); %>
+
+            <!-- search forms -->
+            <nav class="d-lg-flex">
+                <% if(admin){ %>
+                <div class="col-3 d-lg-none p-0">
+                    <a class="btn bg-my-melon btn-sm d-flex justify-content-center align-items-center mb-2 mb-lg-4"
+                        href="/create">
+                        <span class="material-icons mr-1"> post_add</span>
+                        <span>create</span>
+                    </a>
+                </div>
+                <% } %>
+
+                <form class="mb-2 mb-lg-4 ml-auto form-inline" method="GET" action="/">
+                    <input class="form-control form-control-sm mr-1" type="search" placeholder="Search"
+                        aria-label="Search" name="search">
+                    <button class="btn bg-my-primary btn-sm my-2 my-sm-0" type="submit">search</button>
+                </form>
+            </nav>
+            <!-- --------------------------------------------- -->
+
+            <% blogs.forEach(blog =>{ %>
+            <div class="card mb-1">
+                <button class="btn bg-my-primary btn-block text-left" type="button" data-toggle="collapse"
+                    data-target="#data<%= blog.id %>">
+                    <%= blog.title; %>
+                </button>
+                <div class="collapse" id='data<%= blog.id %>'>
+                    <div class="card-body">
+                        <%- blog.teks; %>
+                        <div class="font-italic my-2 d-block text-right card-kategori">
+                            <a href="/kategori/<%= blog.kategori; %>">
+                                #<%= blog.kategori %>
+                            </a>
+                        </div>
+
+                        <% if(admin){ %>
+                        <a class="badge bg-my-melon p-1" href="/edit/<%= blog.id %>" title="edit">
+                            <span class="material-icons">create</span>
+                        </a>
+                        <a class="badge bg-my-melon p-1 del-btn" href="" title="delete" data-target="<%= blog.id %>">
+                            <span class="material-icons">delete</span>
+                        </a>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+            <% }) %>
+
+
+            <!-- jika pencarian tidak ditemukan -->
+            <% if(typeof(empty) === 'string'){ %>
+            <h3 class="text-secondary text-center mt-4"><%= typeof(empty) === 'string'? empty:''; %> </h3>
+            <% } %>
+            <!-- ---------------------------------------------------------- -->
+
+
+            <!-- pagination -->
+            <ul class="pagination pagination-sm mt-2">
+                <% if(paginate.prevPage){ %>
+                <li class="page-item">
+                    <a class="page-link"
+                        href="?<%- typeof(query) == 'string'? 'kategori='+query+'&':''; %>page=<%= paginate.prevPage; %> ">
+                        Prev
+                    </a>
+                </li>
+                <% } %>
+
+                <% if(paginate.nextPage){ %>
+                <li class="page-item">
+                    <a class="page-link"
+                        href="?<%- typeof(query) == 'string'? 'kategori='+query+'&':''; %>page=<%= paginate.nextPage; %> ">
+                        Next
+                    </a>
+                </li>
+                <% } %>
+            </ul>
+            <!-- -------------------------------- -->
+        </div>
+
+        <div class="col-lg-3 offset-lg-1 mt-5 mt-lg-0 mb-4 mb-lg-0 kategori">
+            <h3>kategori</h3>
+            <div class="list-kategori">
+                <a class="btn btn-sm mr-1 mb-2" href="/" role="button">all Kategori</a>
+                <% kategori.forEach(k=>{ %>
+                <a class="btn btn-sm mr-1 mb-2" href="/kategori/<%= k %>" role=" button"><%= k %> </a>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include("./partial/footer"); %>
